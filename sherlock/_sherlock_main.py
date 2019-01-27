@@ -21,7 +21,8 @@ def main():
 
     parser = ArgumentParser(
         formatter_class=RawDescriptionHelpFormatter,
-        description="%s (Version %s)" % (__description__, __version__),
+        description="%s (Version %s)" % (sherlock.__description__,
+                                         sherlock.__version__),
     )
 
     parser.add_argument(

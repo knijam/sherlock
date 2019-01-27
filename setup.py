@@ -1,8 +1,14 @@
+import pip
+from sherlock import __version__ as serlockv
+from sherlock import __description__ as serlockd
 from setuptools import setup
+from setuptools.command.install import install as InstallCommand
 
-# Current version of setup
-def _get_version():
-    return "%i.%i.%i" % (0, 3, 0)
+
+class Install(InstallCommand):
+    def run(self, *args, **kwargs):
+        pip.main(['install', '.'])
+        InstallCommand.run(self, *args, **kwargs)
 
 # Requirements for the pypi
 _requirements = [
@@ -24,11 +30,9 @@ _packages = [
 # Setup for the project
 setup(
     name="thesherlock",
-    version=_get_version(),
+    version=serlockv,
     description="Sherlock the username detective",
-    long_description="""
-        This scrapes and finds matching usernames over multiple HTTP hosts
-    """,
+    long_description=serlockd,
     long_description_content_type="text/markdown",
     author="",
     author_email="",

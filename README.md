@@ -16,8 +16,9 @@ $ git clone https://github.com/TheYahya/sherlock.git
 # change the working directory to sherlock
 $ cd sherlock
 
-# install the requirements
-$ pip3 install -r requirements.txt
+# install the pypi package
+$ python3 setup.py install
+
 ```
 
 # API Documentation
@@ -26,6 +27,7 @@ Classes:
 - sherlock.core.Data
 - sherlock.core.Log
 - sherlock.core.Service
+- sherlock.core.ElapsedFuturesSession
 - sherlock.exception.SLException
 - sherlock.exception.SLUnsupportedTypeException
 
