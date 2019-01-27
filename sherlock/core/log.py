@@ -134,7 +134,7 @@ class Log:
         if store:
             with open(self._filename, "w") as f:
                 f.write(
-                    (+"%s [" + "%s" + "] " + "%s.") % (datetime.now(), status, message)
+                    ("%s [" + "%s" + "] " + "%s.") % (datetime.now(), status, message)
                 )
 
     def log(self, message: str):
