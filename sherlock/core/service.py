@@ -62,6 +62,10 @@ class Service:
                 self._error_type = kargs["errorType"]
             if "regexCheck" in kargs:
                 self._regex = kargs["regexCheck"]
+            if "errorMsg" in kargs:
+                self._error_message = kargs["errorMsg"]
+            if "errorUrl" in kargs:
+                self._error_url = kargs["errorUrl"]
 
         # Dict Initiasation
         self._header = {
@@ -114,32 +118,30 @@ class Service:
         return : str, request
             The where the request will be sent too.
         """
-        host = re.find(r"([a-z]*:[/]+[a-z0-1.]*)", self.url)
-        if len(host) > 0:
+        host = re.match(r"([a-z]*:[/]+[a-z0-1.]*)", self.url)
+        if host:
             return host.group(1)
         else:
             return ""
 
     def _recv_event(self, response, *args, **kwargs):
         is_found = False
-        config = self._config
+        config = self
 
         # Get the error type
-        error_type = "status_code"
-        if "errorType" in config:
-            error_type = config["errorType"]
+        error_type = self._error_type
 
         # Depends on error type
-        if error_type == "message" and "errorMsg" in config:
-            is_found = not config["errorMsg"] in response.text
+        if error_type == "message":
+            is_found = not self._error_message in response.text
 
         # Based on error code
         elif error_type == "status_code":
             is_found = not response.status_code >= 300 or response.status_code < 200
 
         # Based on response url
-        elif error_type == "response_url" and "errorUrl" in config:
-            is_found = not config["errorUrl"] in response.url
+        elif error_type == "response_url":
+            is_found = not self._error_url in response.url
 
         # Anything else
         else:
