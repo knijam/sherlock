@@ -16,7 +16,7 @@ class Data:
             The data loaded into the Data Object.
         """
         self._data = data
-        self._data_keys = self._data.keys()
+        self._data_keys = list(self._data.keys())
 
     @staticmethod
     def fromFile(filename, t="json"):
@@ -39,7 +39,7 @@ class Data:
             return Data(data=d)
         if t == "yaml":
             with open(filename, "r") as f:
-                d = yaml.loads(f.read())
+                d = yaml.load(f.read())
                 f.close()
             return Data(data=d)
 
