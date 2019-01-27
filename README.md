@@ -5,6 +5,9 @@
 <img src="./screenshot/preview.png">
 </p>
 
+## Dependencies
+
+
 ## Installation
 
 **NOTE**: Python 3.6 or higher is required.

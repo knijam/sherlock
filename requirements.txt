@@ -1,6 +1,5 @@
-requests
-grequests
-pyyaml
-requests_futures
-torrequest
-colorama
+requests==2.21.0
+pyyaml==3.11
+requests-futures==0.9.9
+torrequest==0.1.0
+colorama==0.4.1

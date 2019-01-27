@@ -11,14 +11,14 @@ class Install(InstallCommand):
         InstallCommand.run(self, *args, **kwargs)
 
 # Requirements for the pypi
-_requirements = [
-    "requests",
-    "grequests",
-    "pyyaml",
-    "requests_futures",
-    "torrequest",
-    "colorama"
-]
+
+deps = open("requirements.txt", "r")
+_requirements = []
+with open("requirements.txt", "r") as f:
+    for line in f:
+        line=line.strip("\n")
+        _requirements.append(line)
+        
 
 # Packages part of setup
 _packages = [
